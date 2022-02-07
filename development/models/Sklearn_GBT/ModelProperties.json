@@ -1,0 +1,16 @@
+{
+    "name": "Sklearn_GBT",
+    "description": "Sklearn classifier",
+    "function": "classification",
+    "scoreCodeType": "python",
+    "trainTable": " ",
+    "trainCodeType": "Python",
+    "algorithm": "Pipeline Gradient Boosting",
+    "targetVariable": "BAD",
+    "targetEvent": "1",
+    "targetLevel": "BINARY",
+    "eventProbVar": "EM_EVENTPROBABILITY",
+    "modeler": "sasdemo",
+    "tool": "Python 3",
+    "toolVersion": "3.9.7"
+}
