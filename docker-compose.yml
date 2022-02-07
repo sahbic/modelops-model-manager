@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  jupyter:
+        image: datascience/jupyter_lab
+        container_name: jupyterlab
+        build: ./development/
+        ports:
+            - 8888:8888
+        volumes:
+            - ./development/:/home/jovyan/work/development
