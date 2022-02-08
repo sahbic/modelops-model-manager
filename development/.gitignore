@@ -1,9 +1,11 @@
 # jupyter checkpoints
 .ipynb_checkpoints
 
+# config files
+viya_config.yml
+
 # cache
 __pycache__
 
-# config files
-viya_config.yml
-jenkins_config.txt
+# Dockerfile
+Dockerfile

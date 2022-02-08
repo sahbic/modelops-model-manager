@@ -68,6 +68,9 @@ RUN pip install xgboost
 # Install SAS Swat package
 RUN pip install swat
 
+# Install SAS sasctl package
+RUN pip install sasctl
+
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME="/home/${NB_USER}/.cache/"
 

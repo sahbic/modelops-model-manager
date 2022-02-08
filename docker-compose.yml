@@ -1,7 +1,13 @@
 version: "3"
 
+networks:
+    jenkins:
+
 services:
-  jupyter:
+    ### DEV ENVIRONMENT ###
+
+    # Jupyter-Lab
+    jupyter:
         image: datascience/jupyter_lab
         container_name: jupyterlab
         build: ./development/
@@ -9,3 +15,41 @@ services:
             - 8888:8888
         volumes:
             - ./development/:/home/jovyan/work/development
+
+    ### CI/CD ENVIRONMENT ###
+
+    # Jenkins service
+    jenkins-master:
+        image: devopslab/jenkins
+        container_name: jenkins-blueocean
+        privileged: true
+        build: ./ci_cd/
+        ports:
+            - 50000:50000
+            - 8080:8080
+        volumes:
+            - jenkins-docker-certs:/certs/client
+            - jenkins-data:/var/jenkins_home
+            # Check the right path. Should be /home/project
+            - ./:/home
+        networks: 
+            - jenkins
+
+    docker:
+        privileged: true
+        image: "docker:dind"
+        container_name: "jenkins-docker"
+        ports:
+            - "2376:2376"
+        environment: 
+            - DOCKER_TLS_CERTDIR=/certs
+        volumes: 
+            - "jenkins-docker-certs:/certs/client"
+            - "jenkins-data:/var/jenkins_home"
+        networks: 
+            - jenkins
+
+
+volumes:
+    jenkins-docker-certs:
+    jenkins-data:

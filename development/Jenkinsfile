@@ -1,0 +1,34 @@
+pipeline {
+    agent none
+    stages {
+
+        stage('Code Quality Test') {
+
+            parallel{
+
+                stage('Score Code Quality Test') {
+
+                    agent {
+                        dockerfile {
+                            filename 'Dockerfile.test'
+                            dir 'docker'
+                        }
+                    }
+
+                    steps{
+                        sh 'pylint --disable=C,R,W models/Sklearn_GBT/Sklearn_GBTScore.py'
+                    }
+
+                    post {
+                        success {
+                            echo "Score code file successfully passed the Code Quality Test!"
+                        }
+                        failure {
+                            echo "Code failed the quality test, please see logs."
+                        }
+                    }
+                }
+            }
+        }  
+    }
+}
