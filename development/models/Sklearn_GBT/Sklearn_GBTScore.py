@@ -1,11 +1,10 @@
 
 import pickle
 import pandas as pd
-import settings
                             
 global _thisModelFit
-
-with open(settings.pickle_path + 'Sklearn_GBT.pickle', 'rb') as _pFile:
+        
+with open('Sklearn_GBT.pickle', 'rb') as _pFile:
     _thisModelFit = pickle.load(_pFile)
 
 def scoreSklearn_GBT(Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
@@ -16,7 +15,7 @@ def scoreSklearn_GBT(Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
         _thisModelFit
     except NameError:
 
-        with open(settings.pickle_path + 'Sklearn_GBT.pickle', 'rb') as _pFile:
+        with open('Sklearn_GBT.pickle', 'rb') as _pFile:
             _thisModelFit = pickle.load(_pFile)
     
     inputArray = pd.DataFrame([[Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
