@@ -6,4 +6,6 @@ __pycache__
 
 # config files
 viya_config.yml
+deploy_config.yml
 jenkins_config.txt
+docker_registry_config.txt

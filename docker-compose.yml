@@ -23,7 +23,7 @@ services:
         image: devopslab/jenkins
         container_name: jenkins-blueocean
         privileged: true
-        build: ./ci_cd/
+        build: ./tests/
         ports:
             - 50000:50000
             - 8080:8080
