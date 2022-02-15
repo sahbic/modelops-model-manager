@@ -30,6 +30,7 @@ pipeline {
                 }
             }
         }
+
         stage('Code Validation Test') {
 
             parallel {
@@ -58,6 +59,33 @@ pipeline {
                     }
                 }
             }
-        }  
+        }
+        
+        stage('Unit Test for Score code') {
+
+            agent {
+                        dockerfile {
+                            filename 'Dockerfile'
+                            dir 'tests/2_unit_test'
+                        }
+                    }
+
+            steps {
+                sh 'python tests/2_unit_test/unit_test_pipeline.py development/models/Sklearn_GBT/Sklearn_GBT.pickle data/sample.csv result.csv'
+            }
+
+            post {
+
+                success {
+                        echo 'Score code file successfully passed Unit Test!'
+                    }
+
+                failure {
+                        echo 'Code failed the Unit test, please see logs.'
+                    }
+            }
+
+        }
+  
     }
 }
