@@ -96,36 +96,12 @@ pipeline {
 
                     node {
 
-                        docker.image('mysql:5').withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw"') { c ->
-                            docker.image('mysql:5').inside("--link ${c.id}:db") {
-                                /* Wait until mysql service is up */
-                                sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
-                            }
-                            docker.image('centos:7').inside("--link ${c.id}:db") {
-                                /*
-                                * Run some tests which require MySQL, and assume that it is
-                                * available on the host name `db`
-                                */
-                                sh 'make check'
-                            }
-                        }
-                    }
-
-                }
-
-                script {
-
-                    node {
-
                         docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').withRun('-p 9999:9999') { test ->
-
                             docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
                             }
-
                             docker.image('docker-registry-frascb.unx.sas.com/modelops_exec_container').inside("--workdir=/home/test --link ${test.id}:test_score") {
-                                sh("echo toto")
+                                sh 'echo toto'
                             }
-
                         }
 
                     }
