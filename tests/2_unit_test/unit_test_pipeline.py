@@ -11,8 +11,7 @@ import unittest
 # Find the first file that matches the pattern.
 
 
-def find_file(suffix):
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+def find_file(suffix,current_dir):
     for file in os.listdir(current_dir):
         if file.endswith(suffix):
             filename = file
@@ -21,8 +20,8 @@ def find_file(suffix):
     return None
 
 
-def load_var_names(filename):
-    var_file = find_file(filename)
+def load_var_names(filename, current_dir):
+    var_file = find_file(filename, current_dir)
     if var_file is None:
         return None
     if os.path.isfile(var_file):
@@ -43,8 +42,8 @@ def intersection(lst1, lst2):
     return lst3
 
 
-def load_data_by_input_vars(data):
-    names = load_var_names('inputVar.json')
+def load_data_by_input_vars(data, current_dir):
+    names = load_var_names('inputVar.json', current_dir)
     if names is None:
         return data
     else:
@@ -53,6 +52,7 @@ def load_data_by_input_vars(data):
 
 
 def run(model_file, input_file, output_file):
+    current_dir = os.path.dirname(os.path.abspath(model_file))
 
     if model_file is None:
         print('Not found Python pickle file!')
@@ -64,9 +64,9 @@ def run(model_file, input_file, output_file):
 
     inputDf = pd.read_csv(input_file).fillna(0)
 
-    output_vars = load_var_names('outputVar.json')
+    output_vars = load_var_names('outputVar.json', current_dir)
 
-    in_dataf = load_data_by_input_vars(inputDf)
+    in_dataf = load_data_by_input_vars(inputDf, current_dir)
 
     model = open(model_file, 'rb')
     pkl_model = pickle.load(model)
