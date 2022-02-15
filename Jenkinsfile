@@ -97,6 +97,8 @@ pipeline {
                     node {
 
                         docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').withRun('-p 9999:9999') { test ->
+                            docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').inside("--link ${test.id}:test_score") {
+                            }
                             docker.image('docker-registry-frascb.unx.sas.com/modelops_exec_container').inside("--workdir=/home/test --link ${test.id}:test_score") {
                                 sh 'echo toto2'
                             }
