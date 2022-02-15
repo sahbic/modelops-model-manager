@@ -1,4 +1,4 @@
-FROM conda/miniconda3:latest
+FROM python:3-alpine
 
 LABEL maintainer="Sahbi Chaieb <sahbi.chaieb@sas.com>"
 LABEL description="A container for Unit test"
