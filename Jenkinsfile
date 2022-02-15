@@ -65,8 +65,7 @@ pipeline {
 
             agent {
                         dockerfile {
-                            filename 'Dockerfile'
-                            dir 'tests/2_unit_test'
+                            image 'docker-registry-frascb.unx.sas.com/modelops_pyunit'
                         }
                     }
 
