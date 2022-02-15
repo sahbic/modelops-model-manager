@@ -70,7 +70,7 @@ pipeline {
                 }
 
             steps {
-                sh 'python tests/2_unit_test/unit_test_pipeline.py development/models/Sklearn_GBT/Sklearn_GBT.pickle data/sample.csv result.csv'
+                sh 'python tests/2_unit_test/unit_test_pipeline.py development/models/Sklearn_GBT/Sklearn_GBT.pickle data/test.csv result.csv'
             }
 
             post {
