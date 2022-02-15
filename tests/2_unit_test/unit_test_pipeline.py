@@ -83,7 +83,7 @@ def run(model_file, input_file, output_file):
     # merge with input data
     outputDf = pd.merge(
         inputDf, outputDf, how="inner", left_index=True, right_index=True
-    ).round(1)
+    )
 
     # print('printing first few lines...')
     # print(outputDf.head())
