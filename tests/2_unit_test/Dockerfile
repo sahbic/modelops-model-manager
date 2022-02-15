@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3
 
 LABEL maintainer="Sahbi Chaieb <sahbi.chaieb@sas.com>"
 LABEL description="A container for Unit test"
