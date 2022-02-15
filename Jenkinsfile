@@ -98,9 +98,10 @@ pipeline {
 
                         docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').withRun('-p 9999:9999') { test ->
                             docker.image('docker-registry-frascb.unx.sas.com/modelops_model_container').inside("-u 0 --entrypoint=/pybox/app/startServer.sh --link ${test.id}:test_score") {
+                                sh 'echo toto1'
                             }
                             docker.image('docker-registry-frascb.unx.sas.com/modelops_exec_container').inside("--workdir=/home/test --link ${test.id}:test_score") {
-                                sh 'echo toto'
+                                sh 'echo toto2'
                             }
                         }
 
