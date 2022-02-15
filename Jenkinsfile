@@ -64,10 +64,10 @@ pipeline {
         stage('Unit Test for Score code') {
 
             agent {
-                        dockerfile {
-                            image 'docker-registry-frascb.unx.sas.com/modelops_pyunit'
-                        }
+                    docker {
+                        image 'docker-registry-frascb.unx.sas.com/modelops_pyunit'
                     }
+                }
 
             steps {
                 sh 'python tests/2_unit_test/unit_test_pipeline.py development/models/Sklearn_GBT/Sklearn_GBT.pickle data/sample.csv result.csv'
