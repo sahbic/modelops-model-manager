@@ -1,11 +1,5 @@
 [
     {
-        "name": "Unique_ID",
-        "length": 8,
-        "type": "decimal",
-        "level": "interval"
-    },
-    {
         "name": "LOAN",
         "length": 8,
         "type": "decimal",
@@ -73,12 +67,6 @@
     },
     {
         "name": "DEBTINC",
-        "length": 8,
-        "type": "decimal",
-        "level": "interval"
-    },
-    {
-        "name": "_PARTIND_",
         "length": 8,
         "type": "decimal",
         "level": "interval"

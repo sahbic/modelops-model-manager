@@ -7,8 +7,8 @@ global _thisModelFit
 with open('Sklearn_GBT.pickle', 'rb') as _pFile:
     _thisModelFit = pickle.load(_pFile)
 
-def scoreSklearn_GBT(Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
-, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, _PARTIND_):
+def scoreSklearn_GBT(LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG, DELINQ, CLAGE
+, NINQ, CLNO, DEBTINC):
     "Output: EM_EVENTPROBABILITY, EM_CLASSIFICATION"
     
     try:
@@ -18,9 +18,9 @@ def scoreSklearn_GBT(Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
         with open('Sklearn_GBT.pickle', 'rb') as _pFile:
             _thisModelFit = pickle.load(_pFile)
     
-    inputArray = pd.DataFrame([[Unique_ID, LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG
-, DELINQ, CLAGE, NINQ, CLNO, DEBTINC, _PARTIND_]], columns = ['Unique_ID', 'LOAN', 'MORTDUE', 'VALUE', 'REASON', 'JOB', 'YOJ', 'DEROG'
-, 'DELINQ', 'CLAGE', 'NINQ', 'CLNO', 'DEBTINC', '_PARTIND_'])
+    inputArray = pd.DataFrame([[LOAN, MORTDUE, VALUE, REASON, JOB, YOJ, DEROG, DELINQ, CLAGE
+, NINQ, CLNO, DEBTINC]], columns = ['LOAN', 'MORTDUE', 'VALUE', 'REASON', 'JOB', 'YOJ', 'DEROG', 'DELINQ', 'CLAGE'
+, 'NINQ', 'CLNO', 'DEBTINC'])
     
     prediction = _thisModelFit.predict_proba(inputArray)
 
